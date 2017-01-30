@@ -1,0 +1,39 @@
+addons:
+  apt:
+    packages:
+    - zsh
+services: docker
+env:
+  global:
+  - DOCKER_USER=callforamerica
+  # DOCKER_PASS
+  - secure: 
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+  slack:
+    rooms:
+    - secure: 
+    on_success: always
+    on_failure: always
+
+before_install:
+- source scripts/ci-env.sh
+- make info
+
+install:
+- make build
+- make launch
+
+script:
+- sleep 10
+- make test
+
+after_success:
+- make tag ALT_TAG=${TRAVIS_COMMIT::6}
+- make tag ALT_TAG=travis-$TRAVIS_BUILD_NUMBER
+- make hub-login
+- make hub-push
+- make hub-build
+

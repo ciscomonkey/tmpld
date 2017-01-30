@@ -1,0 +1,18 @@
+---
+target: test.conf
+owner: joeblack
+mode: 755
+---
+
+Hello {{ env['NAME'] or 'default name' }}
+
+{% if env['NAME'] %}
+NAME was in environment and is {{ env['NAME'] }}
+{% endif %}
+
+Directory listing {{ shell('ls -la') }}
+
+
+{% set pod = kube.get('pod', 'couchdb-0') %}
+
+Pod name is: {{ pod.name }}
