@@ -1,39 +1,28 @@
-addons:
-  apt:
-    packages:
-    - zsh
+language: python
 services: docker
 env:
   global:
   - DOCKER_USER=callforamerica
   # DOCKER_PASS
-  - secure: 
+  - secure: "aJwrsMPvujVCJsFRmU7X+WqPaiOJvzUJWavhVHzATDGn3aL310OKK1mEgPoVCxykEtkux6DRE8gs+DpphMnL5qACdgNbqpmq02t8h0c5fPgnBHFGvcj8nQs1A/8Zqj1mWhghnCcX34XsD80rdE/KJFt7XtGaD0UAYN4pGS4FlgiHPKKA2pNpDHfI/NZbsZuckoylnQmtgJfF9HkVxFDB62TuaS7MUQskeYMFfCLZ0tP4SFkERrK+oN+/3ch+CtSMHZM94rafwIaElJs5eR4zqWU0oCRtQWTiUnFnHkxfHtFbscN83ZVTwJpvPGHLkT/qNjWHk4k0ZIFYWB0raxo7xQGXEfTlXPZWRjZiN6GWC42jrbjHGp5mGtZwUIA0OnucMQ6zLS7i9wJwAtA8ixCUFaMl+n5pSxrJD7ESRYnncTVYE9BBKzbatf+eOwtthUsz29gKGHs7JXBKrKYtfhrNqFmPvbbBtwfCQXZrlD7N1DWC70KXZUBB4uqcbR4BmQp3gS/yXJJ6KiGEiWvPCFRe7T+SMZ7VPECEUjgh+q2EzOBjkHKLiKDNFtOCwylGIImbaXjIOjpj5b4wdqVViykD0jU2Jx7wOhO2B1J5cOKYR8Za/Gx3hAt1nNWpuHignb4S5Q/dLTU0Tj4nW6m6mm/vBhG4t2b7+IC906ywHxQX3JI="
 notifications:
   email:
     on_success: never
     on_failure: always
   slack:
     rooms:
-    - secure: 
+    - secure: "C1ibA5Ep0MqEvKhVL+Kz47l07zwGHDQhQvAquKIDak5GLoqJiYSNjsrjVnIwQ4hc1ESJiZcU0cNw4lYkigMh0gC8A9BHL3JjjkmDKc6Yqy7zwCpAnyZZg427eogSp43G1HvEmUr0UeR8VYW48deBdR4rG8OmJbY0JQe0rlYmHLS4El+PP6Vtt7UDwWgeFC7drJ4+GfLj/SNj6/s0DkY5l5g5QvF3/7c5jwvKgMP1tqCCStbJ1wpHlR1Y5EAIRanF8EATFJ5mDu2FzFvFmxvVEx7JVMWhZ/JmLfOlcSY5XWtjvw39S8S3rlC/0M9PmYByNudSxatXVb2v8zyBOAjYo0Wa1yHaaaeZD5UC0+26FRv0DzOrbqV0kau8Su0I797V3saLg1mFT1dWzKvjcMBPXGGuffjpjFjDW8+n2QLg+3HXHIL4SyAtrQn8nWBKZsMucwbYsgUfG40+hvDRkOf/j9wJIy5FK/ueh/dfUaCCRfgCqH8CPNdpDvrnfJ2m+DZKgxuXOMLAChSxQ6YTIBXFdui+ESeB61Bqvccyjm9IwK3OM+qDjmyrfgmnlnw8iRxQKdjp1rHpMsom0eHrvm8i8Fvci77uABVEnlpYKRmBWlHfmlMl02xJrUNMFtPttQqDtPNMj9GEo1Z3I5wFE6h26j9UX6YETofgeggT/w2Bh7w="
     on_success: always
     on_failure: always
 
-before_install:
-- source scripts/ci-env.sh
-- make info
+before_install: source scripts/ci-env.sh
 
-install:
-- make build
-- make launch
+install: docker build -t $REPO:$COMMIT .
 
-script:
-- sleep 10
-- make test
+script: true
 
 after_success:
-- make tag ALT_TAG=${TRAVIS_COMMIT::6}
-- make tag ALT_TAG=travis-$TRAVIS_BUILD_NUMBER
-- make hub-login
-- make hub-push
-- make hub-build
-
+- docker tag $REPO:$COMMIT $REPO:$TAG
+- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- docker push $REPO
