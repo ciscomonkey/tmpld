@@ -1,4 +1,4 @@
-FROM python:3-alpine
+FROM callforamerica/debian
 
 MAINTAINER Joe Black <joeblack949@gmail.com>
 
@@ -10,6 +10,10 @@ LABEL   app.version=${KUBEWAIT_VERSION}
 
 ADD     https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64 /dumb-init
 RUN     chmod +x /dumb-init
+
+RUN     apt-get update && \
+            apt-get install -yqq python3-lxml python3 python3-pip && \
+            apt-clean --aggressive
 
 RUN     pip3 install tmpld
 
