@@ -6,7 +6,7 @@ else
 fi
 
 export REPO=$DOCKER_USER/$(basename $TRAVIS_REPO_SLUG)
-
+export COMMIT=${TRAVIS_COMMIT::6}
 if [[ $BRANCH == "master" ]]; then
     export TAG='latest'
 else
