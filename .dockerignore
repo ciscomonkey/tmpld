@@ -6,5 +6,6 @@ test/
 *.txt
 *.py
 *.ini
+*.conf
 LICENSE
 Makefile
