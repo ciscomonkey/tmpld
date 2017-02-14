@@ -16,7 +16,7 @@ RUN     apt-get update && \
             apt-get install -yqq python3 python3-pip && \
             apt-clean --aggressive
 
-RUN     pip3 install tmpld==$TMPLD_VERSION[caps]
+RUN     pip3 install tmpld[caps]==$TMPLD_VERSION
 
 ENV     TMPLD_ENVIRONMENT production
 ENV     TMPLD_LOG_LEVEL INFO

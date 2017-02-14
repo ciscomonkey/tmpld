@@ -4,8 +4,8 @@ from invoke import task
 @task
 def mkvenv(ctx, project=None):
     ctx.run(
-        "mkvirtualenv -a $PWD -r requirements.txt %s" % project or ctx.project)
-    print('\nRemember to execute: workon %s' % project or ctx.project)
+        "mkvirtualenv -a $PWD -r requirements.txt %s" % (project or ctx.project))
+    print('\nRemember to execute: workon %s' % (project or ctx.project))
 
 
 @task
