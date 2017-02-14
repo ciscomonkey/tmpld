@@ -8,13 +8,14 @@ YAML Frontmatter loader for tmpld.
 :license: Apache2.
 """
 
+import os
 import yaml
 
 
 class FrontMatterFile:
     def __init__(self, file):
         self.file = file
-        self._load_file(file)
+        self._load_file(self.file)
 
     def _load_file(self, file):
         with open(file, 'rt') as fd:
@@ -34,7 +35,7 @@ class FrontMatterFile:
                 lines.append(line)
             else:
                 lines = ''.join(lines)
-                return yaml.load(lines)
+                return yaml.load(lines) or {}
 
     def print(self, as_string=False):
         if as_string:

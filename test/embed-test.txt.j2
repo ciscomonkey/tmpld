@@ -1,0 +1,4 @@
+{% file '../requirements.txt', "default", strip=True, strip_comments=True %}
+
+
+{{ file('%s/../requirements.txt' % dirname, "default", strip=True, strip_comments=True) }}

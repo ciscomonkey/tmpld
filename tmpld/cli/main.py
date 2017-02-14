@@ -15,9 +15,10 @@ from cement.core.foundation import CementApp
 from cement.core.controller import CementBaseController, expose
 
 import pyrkube
-import pycaps
+# import pycaps
 
 from ..core import template, environment
+from ..core.util import try_import
 from . import handlers
 
 
@@ -33,13 +34,20 @@ class TmpldController(CementBaseController):
 
     def _get_ext(self, name, config):
         if name == 'kube':
-            kube = pyrkube.KubeAPIClient(
-                config['environment'],
-                config['namespace'],
-                config['domain'])
-            self.app.log.debug('Got kubernetes api client: %s', kube)
-            return kube
+            try:
+                kube = pyrkube.KubeAPIClient(
+                    config['environment'],
+                    config['namespace'],
+                    config['domain'])
+                self.app.log.debug('Got kubernetes api client: %s', kube)
+                return kube
+            except pyrkube.KubeConfigNotFound:
+                pass
         elif name == 'caps':
+            pycaps = try_import('pycaps')
+            if not pycaps:
+                raise ImportError(
+                    'You need to install pycaps to use the caps extension')
             return pycaps.get_caps()
 
     def _get_config(self):
@@ -54,7 +62,9 @@ class TmpldController(CementBaseController):
         return extensions
 
     def _get_template_environment(self, extensions):
-        template_env = environment.TemplateEnvironment(extensions)
+        template_env = environment.TemplateEnvironment(
+            extensions, self.app.pargs.files
+        )
         self.app.log.debug('Got Jinja environment: %s', template_env)
         return template_env
 
@@ -66,12 +76,12 @@ class TmpldController(CementBaseController):
         return templates
 
     def render_templates(self, environment, templates):
-        for tmp in templates:
-            self.app.log.debug('Rendering: %s > %s', tmp.file, tmp.target)
-            self.app.render('Rendering: %s > %s' % (tmp.file, tmp.target))
-            environment.render(tmp)
-            self.app.render(tmp.print(as_string=True))
-            tmp.write()
+        for tmpl in templates:
+            self.app.log.debug('Rendering: %s > %s', tmpl.file, tmpl.target)
+            self.app.render('Rendering: %s > %s\n' % (tmpl.file, tmpl.target))
+            environment.render(tmpl)
+            self.app.render(tmpl.print(as_string=True))
+            tmpl.save()
 
     @expose(hide=True)
     def default(self):
@@ -86,19 +96,19 @@ class TmpldController(CementBaseController):
 class TmpldApp(CementApp):
     class Meta:
         label = 'tmpld'
-        description = 'Renders jinja2 templates using kubernetes api objects.'
+        description = 'Renders jinja2 templates w/ Kubernetes API objects.'
         base_controller = TmpldController
         log_handler = handlers.KubeWaitLogHandler
         output_handler = handlers.StandardOutputHandler
         config_defaults = {
             'tmpld': dict(
                 environment=os.getenv('TMPLD_ENVIRONMENT', 'production'),
-                namespace=os.getenv('TMPLD_NAMESPACE', 'default'),
-                domain=os.getenv('TMPLD_DOMAIN', 'cluster.local'),
-                exts=os.getenv('TMPLD_EXTENSIONS', 'kube,caps').split(',')
+                exts=os.getenv('TMPLD_EXTENSIONS', 'kube').split(','),
+                namespace=os.getenv('KUBE_NAMESPACE', 'default'),
+                domain=os.getenv('KUBE_DOMAIN', 'cluster.local')
             ),
             'log.kwlogging': dict(
-                level=os.getenv('TMPLD_LOG_LEVEL', 'DEBUG')
+                level=os.getenv('TMPLD_LOG_LEVEL', 'WARNING')
             )
         }
 

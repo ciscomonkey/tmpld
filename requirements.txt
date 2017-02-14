@@ -1,7 +1,7 @@
-pyrkube
-pycaps
+pyrkube>=0.2.3
 cement
 Jinja2
 PyYAML
-lxml
-jsonpath-rw
+#lxml
+#jsonpath-rw
+#pycaps

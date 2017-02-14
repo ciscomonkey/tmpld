@@ -37,25 +37,33 @@ setup(
     packages=find_packages(),
     package_data={'': ['LICENSE']},
     install_requires=[
-        'pyrkube',
-        'pycaps',
+        'pyrkube>=0.2.3',
         'cement',
         'Jinja2',
-        'PyYAML',
-        'lxml',
-        'jsonpath-rw'
+        'PyYAML'
     ],
-    # tests_require=['pytest'],
+    extras_require=dict(
+        caps=['pycaps'],
+        xpath=['lxml.etree'],
+        jpath=['jsonpath-rw'],
+        all=['pycaps', 'lxml.etree', 'jsonpath-rw']
+    ),
     entry_points=dict(
         console_scripts=['tmpld = tmpld.cli.main:main']),
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
+        'Intended Audience :: System Administrators',
         'Operating System :: OS Independent',
         'Natural Language :: English',
-        "License :: OSI Approved :: Apache Software License",
+        'License :: OSI Approved :: Apache Software License',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3 :: Only',
         'Topic :: Internet :: WWW/HTTP',
-        # 'Topic :: System :: Clustering',
+        'Topic :: Software Development',
+        'Topic :: System',
+        'Topic :: System :: Systems Administration',
+        'Topic :: Text Processing',
+        'Topic :: Utilities'
     ]
 )

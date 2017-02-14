@@ -48,7 +48,7 @@ class Template(frontmatter.FrontMatterFile):
     def target(self):
         return self.metadata.get('target')
 
-    def write(self, check_rendered=True):
+    def save(self, check_rendered=True):
         """Write jinja template to disk with ownership and mode."""
         if check_rendered and not self.rendered:
             raise RuntimeError('Template: %s not rendered', self)
