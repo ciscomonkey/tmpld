@@ -10,26 +10,30 @@ Cement CLI main app logic for tmpld.
 
 import os
 import sys
+import argparse
 
 from cement.core.foundation import CementApp
 from cement.core.controller import CementBaseController, expose
 
 import pyrkube
-# import pycaps
 
-from ..core import template, environment
+from ..core import environment
 from ..core.util import try_import
-from . import handlers
+from . import handlers, loaders, util
 
 
 class TmpldController(CementBaseController):
     class Meta:
         label = 'base'
         arguments = [
-            (['files'],
-             dict(help='template files to render',
-                  action='store',
-                  nargs='+'))
+            (['templates'], dict(help='template files to render',
+                                 action='store',
+                                 type=loaders.TemplateLoader(),
+                                 nargs='+')),
+            (['-d', '--data'], dict(help='file(s) containing context data',
+                                    action=loaders.DataDict,
+                                    default={},
+                                    type=argparse.FileType()))
         ]
 
     def _get_ext(self, name, config):
@@ -62,16 +66,15 @@ class TmpldController(CementBaseController):
         return extensions
 
     def _get_template_environment(self, extensions):
+        template_dirs = util.get_template_dirs(self.app.pargs.templates)
         template_env = environment.TemplateEnvironment(
-            extensions, self.app.pargs.files
+            self.app.pargs.data, extensions, template_dirs
         )
         self.app.log.debug('Got Jinja environment: %s', template_env)
         return template_env
 
     def _get_templates(self):
-        files = self.app.pargs.files
-        self.app.log.debug('Got files: %s', files)
-        templates = [template.Template(file) for file in files]
+        templates = self.app.pargs.templates
         self.app.log.debug('Got templates: %s', templates)
         return templates
 
@@ -99,7 +102,7 @@ class TmpldApp(CementApp):
         description = 'Renders jinja2 templates w/ Kubernetes API objects.'
         base_controller = TmpldController
         log_handler = handlers.KubeWaitLogHandler
-        output_handler = handlers.StandardOutputHandler
+        output_handler = handlers.StandardErrorHandler
         config_defaults = {
             'tmpld': dict(
                 environment=os.getenv('TMPLD_ENVIRONMENT', 'production'),

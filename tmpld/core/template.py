@@ -23,41 +23,61 @@ class Template(frontmatter.FrontMatterFile):
         self._set_defaults()
 
     def __repr__(self):
-        return ('%s(%s, '
-                'rendered: %s, written: %s, metadata: %s, content: %s)') % (
-                    type(self).__name__,
-                    self.file,
-                    self.rendered,
-                    self.written,
-                    self.metadata,
-                    textwrap.shorten(self.content, 60)
-                )
+        def format_attr(attr):
+            template = '{0}: {{0.{0}!r}}'.format(attr)
+            return template.format(self)
+
+        attrs = ('rendered', 'written', 'metadata')
+        return ('{}({}, {}, content: {})').format(
+            type(self).__name__,
+            self.file,
+            ', '.join(format_attr(attr) for attr in attrs),
+            textwrap.shorten(self.content, 60)
+        )
 
     def _set_defaults(self):
         if not self.metadata.get('target'):
-            if self.file.endswith('.j2'):
-                self.metadata['target'] = self.file.rsplit('.', 1)[0]
-            else:
-                self.metadata['target'] = self.file
+            self.metadata['target'] = self._guess_missing_target()
+
         if not self.metadata.get('owner'):
-            self.metadata['owner'] = ':'.join(util.get_ownership(self.file))
+            self.metadata['owner'] = self._guess_missing_owner()
+
         if not self.metadata.get('mode'):
-            self.metadata['mode'] = util.get_mode(self.file)
+            self.metadata['mode'] = self._guess_missing_mode()
+
+    def _guess_missing_target(self):
+        if self.file in ('-', '/dev/stdin'):
+            return '/dev/stdout'
+        else:
+            if self.file.endswith('.j2'):
+                return self.file.rsplit('.', 1)[0]
+            else:
+                return self.file
+
+    def _guess_missing_owner(self):
+        if self.file not in ('-', '/dev/stdin'):
+            return ':'.join(util.get_ownership(self.file))
+
+    def _guess_missing_mode(self):
+        if self.file not in ('-', '/dev/stdin'):
+            return util.get_mode(self.file)
 
     @property
     def target(self):
         return self.metadata.get('target')
 
-    def save(self, check_rendered=True):
+    def save(self):
         """Write jinja template to disk with ownership and mode."""
-        if check_rendered and not self.rendered:
-            raise RuntimeError('Template: %s not rendered', self)
         target = self.metadata['target']
         owner = self.metadata['owner']
         mode = self.metadata['mode']
-        with open(target, 'w') as fd:
+
+        # if not self.content.endswith('\n\n'):
+        #     content+='\n\n'
+        with util.smart_open(target, 'w') as fd:
             fd.write(self.content)
-            if not self.content.endswith('\n'):
-                fd.write('\n\n')
-        shutil.chown(target, *util.parse_user_group(owner))
-        os.chmod(target, util.octalize(mode))
+
+        if owner:
+            shutil.chown(target, *util.parse_user_group(owner))
+        if mode:
+            os.chmod(target, util.octalize(mode))

@@ -8,8 +8,6 @@ Jinja2 Tags for tmpld.
 :license: Apache2.
 """
 
-import os
-
 import jinja2
 import jinja2.ext
 
@@ -24,7 +22,7 @@ class FileTag(jinja2.ext.Extension):
     tags = set(['file'])
 
     def _parse_tokens(self, parser):
-        dir_name = os.path.dirname(parser.filename)
+        path = util.Path(parser.filename)
         next(parser.stream)  # skip the tag name
         include_path = parser.parse_expression().value
 
@@ -47,8 +45,8 @@ class FileTag(jinja2.ext.Extension):
         else:
             strip_comments = False
 
-        path = util.build_path(dir_name, include_path)
-        return path, default, strip, strip_comments
+        full_path = util.build_path(include_path, path.absdir)
+        return full_path, default, strip, strip_comments
 
     def parse(self, parser):
         contents = util.get_file(*self._parse_tokens(parser))

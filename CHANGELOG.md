@@ -1,8 +1,25 @@
 # Changelog for pyrkube
 
+## 0.2.3
+### Feb 17, 2016
+* Added dirname to globals to help with constructing relative paths to `file` global function.
+* Changed files argument to templates
+* Switched to using argparse for loading files specified in arguments
+* Added the --data argument for passing in data files in yaml or json
+* New global called data holds deserialized result of each data file passed
+* Passing in - or /dev/stdin as an input file now behaves correctly
+* Added util module to cli package
+* Added stderr output handler
+* jpath global is now jsonpath
+* util.get_dirs removes duplicate entries
+* new contextmanager for opening files writes stdin to a StringIO buffer.
+* Output handler now prints to stderr by default
+
+
 ## 0.2.2
 ### Feb 13, 2016
 * Added dirname to globals to help with constructing relative paths to `file` global function.
+
 
 ## 0.2.1
 ### Feb 13, 2016

@@ -9,7 +9,6 @@ Jinja2 environment for tmpld.
 """
 
 import os
-import io
 import re
 import json
 import yaml
@@ -18,19 +17,28 @@ import jinja2
 from jinja2 import FileSystemLoader
 
 from . import util, tags
-from .util import try_import
 
 
 class TmpldEnvironment(jinja2.environment.Environment):
-    def from_string(self, source, filename=None, globals=None,
+    def from_string(self, source, relpath=None, globals=None,
                     template_class=None):
         globals = self.make_globals(globals)
-        globals['filename'] = filename
-        globals['dirname'] = os.path.dirname(filename)
+        globals['paths'] = util.Path(relpath)
+        filename = globals['paths'].filename
+
+        if relpath and relpath not in ('-', '/dev/stdin'):
+            mtime = os.path.getmtime(relpath)
+            def uptodate():
+                try:
+                    return os.path.getmtime(relpath) == mtime
+                except OSError:
+                    return False
+        else:
+            uptodate = lambda x: True
+
         cls = template_class or self.template_class
         return cls.from_code(
-            self, self.compile(source, filename=filename), globals, None
-        )
+            self, self.compile(source, filename, relpath), globals, uptodate)
 
 
 class TemplateEnvironment:
@@ -39,29 +47,28 @@ class TemplateEnvironment:
             trim_blocks=True,
             lstrip_blocks=True,
             autoescape=False,
+            keep_trailing_newline=True,
             extensions=[tags.FileTag]
         ),
         glbls=dict(
+            cwd=os.getcwd(),
             env=os.environ,
             shell=util.shell,
-            file=util.get_file,
+            file=util.ctx_get_file,
             json=json,
             re=re,
             yaml=yaml,
             xpath=util.xpath,
-            jpath=util.jpath
+            jsonpath=util.jsonpath
         )
     )
 
-    def __init__(self, glbls=None, files=None, options=None, strict=False,
-                 **kwargs):
-        self.files = files
+    def __init__(self, data=None, glbls=None, paths=None, options=None,
+                 strict=False, **kwargs):
         self.options = util.set_defaults(options, self.defaults['options'])
-        self.options['loader'] = FileSystemLoader(
-            util.get_dirs(files),
-            followlinks=True
-        )
+        self.options['loader'] = FileSystemLoader(paths, followlinks=True)
         self.glbls = util.set_defaults(glbls, self.defaults['glbls'])
+        self.glbls['data'] = data or {}
         self.env = TmpldEnvironment(**self.options)
         if strict:
             self.env.undefined = jinja2.StrictUndefined
@@ -69,11 +76,10 @@ class TemplateEnvironment:
 
     def render(self, template):
         if not template.rendered:
-
             template.original = template.content
-            template._template = self.env.from_string(
+            template.template = self.env.from_string(
                 template.content, template.file
             )
-            template.content = template._template.render()
+            template.content = template.template.render()
             template.rendered = True
         return template

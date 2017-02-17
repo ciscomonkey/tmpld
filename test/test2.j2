@@ -7,6 +7,6 @@ NAME was in environment and is {{ env['NAME'] }}
 Directory listing {{ shell('ls -la') }}
 
 
-{% set pod = kube.get('pod', 'couchdb-0') %}
+{# {% set pod = kube.get('pod', 'couchdb-0') %} #}
 
-Pod name is: {{ pod.name }}
+{# Pod name is: {{ pod.name }} #}

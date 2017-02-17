@@ -8,6 +8,8 @@ Cement handlers for tmpld cement app.
 :license: Apache2.
 """
 
+import sys
+
 from cement.core.output import CementOutputHandler
 from cement.ext.ext_logging import LoggingLogHandler
 
@@ -18,6 +20,14 @@ class StandardOutputHandler(CementOutputHandler):
 
     def render(self, msg, *args, **kwargs):
         print(msg)
+
+
+class StandardErrorHandler(CementOutputHandler):
+    class Meta:
+        label = 'stderr'
+
+    def render(self, msg, *args, **kwargs):
+        print(msg, file=sys.stderr)
 
 
 class KubeWaitLogHandler(LoggingLogHandler):

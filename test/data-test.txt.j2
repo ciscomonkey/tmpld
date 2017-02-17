@@ -1,0 +1,28 @@
+Hello {{ env['NAME'] or 'default name' }}
+
+{% if env['NAME'] %}
+NAME was in environment and is {{ env['NAME'] }}
+{% endif %}
+
+Directory listing {{ shell('ls -la') }}
+
+Data in data:
+
+{% if 'test-yaml' in data %}
+test-yaml was in data
+contents of test-yaml['data']:
+{{ data['test-yaml'] }}
+
+{% else %}
+test-yaml was not in data
+{% endif %}
+
+
+{% if 'test-json' in data %}
+test-json was in data
+contents of test-json['data']:
+{{ data['test-json'] }}
+
+{% else %}
+test-json was not in data
+{% endif %}

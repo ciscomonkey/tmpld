@@ -8,9 +8,9 @@ YAML Frontmatter loader for tmpld.
 :license: Apache2.
 """
 
-import os
 import yaml
 
+from . import util
 
 class FrontMatterFile:
     def __init__(self, file):
@@ -18,7 +18,7 @@ class FrontMatterFile:
         self._load_file(self.file)
 
     def _load_file(self, file):
-        with open(file, 'rt') as fd:
+        with util.smart_open(file, 'rt') as fd:
             self.metadata = self._parse_metadata(fd)
             self.content = fd.read().lstrip()
 
@@ -38,6 +38,8 @@ class FrontMatterFile:
                 return yaml.load(lines) or {}
 
     def print(self, as_string=False):
+        contents = self.content.strip() + '\n'
         if as_string:
-            return self.content
-        print(self.content)
+            return contents
+        else:
+            print(contents)

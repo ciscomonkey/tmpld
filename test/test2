@@ -1,29 +1,26 @@
 Hello default name
 
 
-Directory listing total 88
-drwxr-xr-x  20 joeblack  staff   680 Feb 13 09:26 .
+Directory listing total 80
+drwxr-xr-x  19 joeblack  staff   646 Feb 17 13:42 .
 drwxr-xr-x  24 joeblack  staff   816 Feb  2 08:17 ..
 -rw-r--r--   1 joeblack  staff    73 Jan 30 06:55 .dockerignore
-drwxr-xr-x  12 joeblack  staff   408 Feb 13 10:06 .git
--rw-r--r--   1 joeblack  staff    65 Jan 30 06:32 .gitignore
--rw-r--r--   1 joeblack  staff  1911 Jan 30 06:52 .travis.yml
--rw-r--r--   1 joeblack  staff   864 Feb 13 09:36 CHANGELOG.md
--rw-r--r--   1 joeblack  staff   722 Feb 13 09:39 Dockerfile
--rw-r--r--   1 joeblack  staff   854 Feb 13 09:24 Makefile
--rw-r--r--   1 joeblack  staff   111 Feb 13 09:36 README.rst
-drwxr-xr-x   4 joeblack  staff   136 Feb 13 09:13 build
-drwxr-xr-x   4 joeblack  staff   136 Feb 13 09:18 dist
+drwxr-xr-x  12 joeblack  staff   408 Feb 17 13:43 .git
+-rw-r--r--   1 joeblack  staff    72 Feb 17 11:33 .gitignore
+-rw-r--r--   1 joeblack  staff  1919 Feb 17 13:34 .travis.yml
+-rw-r--r--   1 joeblack  staff  1711 Feb 17 13:41 CHANGELOG.md
+-rw-r--r--   1 joeblack  staff   722 Feb 17 13:22 Dockerfile
+-rw-r--r--   1 joeblack  staff   140 Feb 17 13:41 README.rst
+drwxr-xr-x   3 joeblack  staff   102 Feb 17 11:33 local
 -rw-r--r--   1 joeblack  staff    63 Feb 13 07:34 requirements.txt
-drwxr-xr-x   3 joeblack  staff   102 Jan 30 06:46 scripts
+drwxr-xr-x   3 joeblack  staff   102 Feb 17 13:33 scripts
 -rw-r--r--   1 joeblack  staff  2014 Feb 13 09:40 setup.py
-drwxr-xr-x  12 joeblack  staff   408 Feb 13 10:36 test
--rwxr-xr-x   1 joeblack  staff  1258 Feb 13 10:36 test.conf
--rwxr-xr-x   1 joeblack  staff  1258 Feb 13 10:36 test2.conf
+drwxr-xr-x   6 joeblack  staff   204 Feb 14 03:41 tasks
+drwxr-xr-x  14 joeblack  staff   476 Feb 17 13:42 test
+-rwxr-xr-x   1 joeblack  staff  1174 Feb 17 13:43 test.conf
+-rwxr-xr-x   1 joeblack  staff  1176 Feb 17 13:43 test2.conf
 drwxr-xr-x   6 joeblack  staff   204 Jan 30 05:54 tmpld
-drwxr-xr-x   9 joeblack  staff   306 Feb 12 06:27 tmpld.egg-info
+drwxr-xr-x   9 joeblack  staff   306 Feb 15 08:10 tmpld.egg-info
 
 
-
-Pod name is: couchdb-0
 
