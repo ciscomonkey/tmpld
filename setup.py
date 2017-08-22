@@ -31,7 +31,7 @@ setup(
     author_email='me@joeblack.nyc',
     url='https://github.com/joeblackwaslike/tmpld',
     download_url=(
-        'https://github.com/joeblackwaslike/tmpld/tarball/%s' % version),
+        'https://github.com/joeblackwaslike/tmpld/tarball/v%s' % version),
     license='Apache 2.0',
     zip_safe=False,
     packages=find_packages(),
