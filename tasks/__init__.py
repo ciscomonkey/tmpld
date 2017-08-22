@@ -19,7 +19,7 @@ ns.configure(dict(
         user=os.getenv('DOCKER_USER'),
         org=os.getenv('DOCKER_ORG', os.getenv('DOCKER_ORG')),
         tag='%s/%s:latest' % (
-            os.getenv('DOCKER_ORG', os.getenv('DOCKER_ORG')),
+            os.getenv('DOCKER_ORG', os.getenv('DOCKER_ORG', 'joeblackwaslike')),
             'tmpld'
         )
     )

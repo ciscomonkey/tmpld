@@ -23,7 +23,6 @@ RUN     pip3 install tmpld==$TMPLD_VERSION
 
 ENV     TMPLD_ENVIRONMENT production
 ENV     TMPLD_LOG_LEVEL INFO
-ENV     TMPLD_EXTENSIONS
 ENV     KUBE_NAMESPACE default
 ENV     KUBE_DOMAIN cluster.local
 

@@ -47,14 +47,9 @@ before_install:
 - source scripts/ci/environment.sh
 - pip install invoke
 
-install: inv docker.build
+install: pip install -e .
 
 script: inv test
-
-after_success:
-- ci-tag-build
-- hub-push
-- hub-update-readme
 
 {% if pypi_pass -%}
 deploy:
@@ -65,3 +60,9 @@ deploy:
   on:
     tags: true
 {%- endif %}
+
+after_deploy:
+- inv docker.build
+- ci-tag-build
+- hub-push
+- hub-update-readme
