@@ -12,7 +12,7 @@ LABEL   app.name=tmpld
 RUN     apt-get update && \
             apt-get install -yqq python3 python3-pip && \
             apt-clean --aggressive && \
-        pip3 install --upgrade pip requests
+        pip3 install --upgrade pip requests setuptools
 
 
 ARG     TMPLD_VERSION
