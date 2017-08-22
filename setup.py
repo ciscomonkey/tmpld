@@ -9,7 +9,7 @@ with open('tmpld/__init__.py', 'rt') as fd:
 if not version:
     raise RuntimeError('Cannot find version information')
 
-with open('README.rst') as fd:
+with open('README.md') as fd:
     long_description = fd.read()
 
 
