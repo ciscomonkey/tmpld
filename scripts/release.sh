@@ -20,4 +20,4 @@ echo "Incrementing version $CURRENT_TAG > $NEXT_TAG ..."
 git tag v$NEXT_TAG
 
 echo "Pushing to github remote: $REMOTE ..."
-# git push $REMOTE master --tags
+git push $REMOTE master --tags
