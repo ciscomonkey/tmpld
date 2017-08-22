@@ -45,7 +45,7 @@ notifications:
 
 before_install:
 - source scripts/ci/environment.sh
-- pip install pyinvoke
+- pip install invoke
 
 install: inv docker.build
 
