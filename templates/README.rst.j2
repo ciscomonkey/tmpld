@@ -1,5 +1,5 @@
 ---
-target: README.rst
+target: README.md
 ---
 {% set github = data.get('vars')['github'] -%}
 {% set github_org = github['org'] -%}
@@ -10,42 +10,32 @@ target: README.rst
 {% set docker_org = docker['org'] -%}
 {% set docker_repo = docker['repo'] -%}
 
-tmpld
-=====
-
-Jinja2 templating on steroids for docker containers.
-
-.. image:: https://travis-ci.org/{{ github_org }}/{{ github_repo }}.svg?branch={{ github_branch }}
-   :target: https://travis-ci.org/{{ github_org }}/{{ github_repo }}
-   :alt: Build Status
-
-.. image:: https://img.shields.io/docker/pulls/{{ docker_org }}/{{ docker_repo }}.svg
-   :target: https://hub.docker.com/r/{{ docker_org }}/{{ docker_repo }}/
-   :alt: Docker Pulls
-
-.. image:: https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat
-   :target: https://github.com/{{ github_org }}/{{ github_repo }}
-   :alt: Github Repo
+# tmpld
+[![Build Status](https://travis-ci.org/{{ github_org }}/debian.svg?branch={{ github_branch }})](https://travis-ci.org/{{ docker_org }}/{{ github_repo }}) [![Docker Pulls](https://img.shields.io/docker/pulls/{{ docker_org }}/{{ docker_repo }}.svg)](https://hub.docker.com/r/{{ docker_org }}/{{ docker_repo }}/) [![Github Repo](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/{{ github_org }}/{{ github_repo }})
 
 
+## Maintainer
+Joe Black | <me@joeblack.nyc> | [github](https://github.com/joeblackwaslike)
+
+
+## Introduction
 CLI tool combining jinja2 with parsers and other objects including Kubernetes
 API objects and linux capabilities objects.
 
 
-Usage
------
-    ::
+## Usage
+```
+usage: tmpld (sub-commands ...) [options ...] {arguments ...}
 
-        usage: tmpld (sub-commands ...) [options ...] {arguments ...}
+Base Controller
 
-        Base Controller
+positional arguments:
+  templates             template files to render
 
-        positional arguments:
-          templates             template files to render
-
-        optional arguments:
-          -h, --help            show this help message and exit
-          --debug               toggle debug output
-          --quiet               suppress all output
-          -d DATA, --data DATA  file(s) containing context data
-          -s, --strict          Raise an exception if a variable is not defined
+optional arguments:
+  -h, --help            show this help message and exit
+  --debug               toggle debug output
+  --quiet               suppress all output
+  -d DATA, --data DATA  file(s) containing context data
+  -s, --strict          Raise an exception if a variable is not defined
+```

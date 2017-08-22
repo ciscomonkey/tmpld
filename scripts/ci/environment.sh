@@ -175,7 +175,7 @@ function hub-update-readme {
 }
 
 function _hub-update-readme {
-    local file="${1:-README.rst}"
+    local file="${1:-README.md}"
     local org=$(get-docker-org)
     local name=$(get-name)
     local tag=$(get-docker-tag)
