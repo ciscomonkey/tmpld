@@ -61,7 +61,7 @@ deploy:
     tags: true
 {%- endif %}
 
-after_success:
+after_deploy:
 - inv docker.build
 - ci-tag-build
 - hub-push
