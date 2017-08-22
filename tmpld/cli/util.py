@@ -4,13 +4,20 @@ tmpld.cli.util
 
 Cement CLI utility methods and classes.
 
-:copyright: (c) 2016 by Joe Black.
+:copyright: (c) 2017 by Joe Black.
 :license: Apache2.
 """
 
 import unicodedata
 import re
 import os
+
+
+def parse_bool(string):
+    if string.lower() in ('yes', 'y', 'true', '1'):
+        return True
+    elif string.lower() in ('no', 'n', 'false', '0'):
+        return False
 
 
 def slugify(string):

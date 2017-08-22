@@ -1,0 +1,13 @@
+name: tmpld
+heading: tmpld template renderer
+description: |-
+  Jinja templates on steroids.
+version: '0.2.3'
+github:
+  user: joeblackwaslike
+  org: joeblackwaslike
+  repo: tmpld
+docker:
+  user: joeblackwaslike
+  org: joeblackwaslike
+  repo: tmpld

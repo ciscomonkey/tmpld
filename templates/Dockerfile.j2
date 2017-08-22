@@ -1,4 +1,10 @@
-FROM    joeblackwaslike/debian:stretch
+---
+target: Dockerfile
+---
+{% set docker_org = data.get('vars')['docker']['org'] -%}
+{% set version = data.get('vars')['version'] -%}
+
+FROM    {{ docker_org }}/debian:stretch
 
 MAINTAINER Joe Black <me@joeblack.nyc>
 
@@ -16,7 +22,7 @@ RUN     apt-get update && \
 
 
 ARG     TMPLD_VERSION
-ENV     TMPLD_VERSION=${TMPLD_VERSION:-0.2.3}
+ENV     TMPLD_VERSION=${TMPLD_VERSION:-{{ version }}}
 LABEL   app.version=${TMPLD_VERSION}
 
 RUN     pip3 install tmpld==$TMPLD_VERSION

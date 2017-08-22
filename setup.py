@@ -28,7 +28,7 @@ setup(
         'templates'
     ],
     author='Joe Black',
-    author_email='joeblack949@gmail.com',
+    author_email='me@joeblack.nyc',
     url='https://github.com/joeblackwaslike/tmpld',
     download_url=(
         'https://github.com/joeblackwaslike/tmpld/tarball/%s' % version),

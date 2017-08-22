@@ -4,7 +4,7 @@ tmpld.core.environment
 
 Jinja2 environment for tmpld.
 
-:copyright: (c) 2016 by Joe Black.
+:copyright: (c) 2017 by Joe Black.
 :license: Apache2.
 """
 

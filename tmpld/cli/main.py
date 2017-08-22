@@ -4,7 +4,7 @@ tmpld.cli.main
 
 Cement CLI main app logic for tmpld.
 
-:copyright: (c) 2016 by Joe Black.
+:copyright: (c) 2017 by Joe Black.
 :license: Apache2.
 """
 
@@ -26,14 +26,20 @@ class TmpldController(CementBaseController):
     class Meta:
         label = 'base'
         arguments = [
-            (['templates'], dict(help='template files to render',
-                                 action='store',
-                                 type=loaders.TemplateLoader(),
-                                 nargs='+')),
-            (['-d', '--data'], dict(help='file(s) containing context data',
-                                    action=loaders.DataDict,
-                                    default={},
-                                    type=argparse.FileType()))
+            (['templates'],
+             dict(help='template files to render',
+                  action='store',
+                  type=loaders.TemplateLoader(),
+                  nargs='+')),
+            (['-d', '--data'],
+             dict(help='file(s) containing context data',
+                  action=loaders.DataDict,
+                  default={},
+                  type=argparse.FileType())),
+            (['-s', '--strict'],
+             dict(help='Raise an exception if a variable is not defined',
+                  action='store_true',
+                  default=False))
         ]
 
     def _get_ext(self, name, config):
@@ -66,9 +72,10 @@ class TmpldController(CementBaseController):
         return extensions
 
     def _get_template_environment(self, extensions):
+        strict = self.app.config.get_section_dict('tmpld')['strict']
         template_dirs = util.get_template_dirs(self.app.pargs.templates)
         template_env = environment.TemplateEnvironment(
-            self.app.pargs.data, extensions, template_dirs
+            self.app.pargs.data, extensions, template_dirs, strict=strict
         )
         self.app.log.debug('Got Jinja environment: %s', template_env)
         return template_env
@@ -108,7 +115,8 @@ class TmpldApp(CementApp):
                 environment=os.getenv('TMPLD_ENVIRONMENT', 'production'),
                 exts=os.getenv('TMPLD_EXTENSIONS', 'kube').split(','),
                 namespace=os.getenv('KUBE_NAMESPACE', 'default'),
-                domain=os.getenv('KUBE_DOMAIN', 'cluster.local')
+                domain=os.getenv('KUBE_DOMAIN', 'cluster.local'),
+                strict=util.parse_bool(os.getenv('TMPLD_STRICT_CHECK', 'false'))
             ),
             'log.kwlogging': dict(
                 level=os.getenv('TMPLD_LOG_LEVEL', 'WARNING')

@@ -1,4 +1,9 @@
-# Changelog for pyrkube
+# Changelog for tmpld
+
+## 0.2.4
+### Aug 22, 2017
+* Added `strict` argument, when used it will raise an exception if an undefined variable is missing.
+
 
 ## 0.2.3
 ### Feb 17, 2016

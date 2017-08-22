@@ -1,8 +1,8 @@
 Hello default name
 
 
-Directory listing total 80
-drwxr-xr-x  19 joeblack  staff   646 Aug 22 01:24 .
+Directory listing total 64
+drwxr-xr-x  17 joeblack  staff   578 Aug 21 23:41 .
 drwxr-xr-x  19 joeblack  staff   646 Aug 21 19:47 ..
 -rw-r--r--   1 joeblack  staff    73 Aug 21 19:47 .dockerignore
 drwxr-xr-x  12 joeblack  staff   408 Aug 22 01:24 .git
@@ -16,11 +16,13 @@ drwxr-xr-x   5 joeblack  staff   170 Aug 22 01:21 scripts
 -rw-r--r--   1 joeblack  staff  2008 Aug 22 01:24 setup.py
 drwxr-xr-x   6 joeblack  staff   204 Aug 21 19:47 tasks
 drwxr-xr-x   7 joeblack  staff   238 Aug 21 23:57 templates
-drwxr-xr-x  13 joeblack  staff   442 Aug 22 01:24 test
--rwxr-xr-x   1 joeblack  staff  1071 Aug 22 01:24 test.conf
--rwxr-xr-x   1 joeblack  staff  1119 Aug 22 01:24 test2.conf
+drwxr-xr-x  11 joeblack  staff   374 Aug 21 19:47 test
 drwxr-xr-x   6 joeblack  staff   204 Aug 22 01:23 tmpld
 drwxr-xr-x   9 joeblack  staff   306 Aug 21 19:53 tmpld.egg-info
 
+Data in data:
+
+test-yaml was not in data
 
 
+test-json was not in data

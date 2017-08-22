@@ -1,3 +1,10 @@
+---
+target: tmpld/__init__.py
+---
+
+{%- set name = data.get('vars')['name'] -%}
+{%- set version = data.get('vars')['version'] -%}
+{%- set year = shell('date +%Y') %}
 
 """
 tmpld
@@ -11,8 +18,8 @@ API objects and linux capabilities objects.
 
 from . import core, cli
 
-__title__ = 'tmpld'
-__version__ = '0.2.3'
+__title__ = '{{ name }}'
+__version__ = '{{ version }}'
 __author__ = "Joe Black <me@joeblack.nyc>"
 __license__ = 'Apache 2.0'
-__copyright__ = 'Copyright 2017 Joe Black'
+__copyright__ = 'Copyright {{ year }} Joe Black'

@@ -1,28 +1,45 @@
+addons:
+  apt:
+    packages:
+    - realpath
 language: python
+python:
+- "3.6"
 services: docker
 env:
   global:
-  - DOCKER_USER=callforamerica
+  - GITHUB_USER=joeblackwaslike
+  - GITHUB_ORG=joeblackwaslike
+  - DOCKER_USER=joeblackwaslike
+  - DOCKER_ORG=joeblackwaslike
   # DOCKER_PASS
-  - secure: "aJwrsMPvujVCJsFRmU7X+WqPaiOJvzUJWavhVHzATDGn3aL310OKK1mEgPoVCxykEtkux6DRE8gs+DpphMnL5qACdgNbqpmq02t8h0c5fPgnBHFGvcj8nQs1A/8Zqj1mWhghnCcX34XsD80rdE/KJFt7XtGaD0UAYN4pGS4FlgiHPKKA2pNpDHfI/NZbsZuckoylnQmtgJfF9HkVxFDB62TuaS7MUQskeYMFfCLZ0tP4SFkERrK+oN+/3ch+CtSMHZM94rafwIaElJs5eR4zqWU0oCRtQWTiUnFnHkxfHtFbscN83ZVTwJpvPGHLkT/qNjWHk4k0ZIFYWB0raxo7xQGXEfTlXPZWRjZiN6GWC42jrbjHGp5mGtZwUIA0OnucMQ6zLS7i9wJwAtA8ixCUFaMl+n5pSxrJD7ESRYnncTVYE9BBKzbatf+eOwtthUsz29gKGHs7JXBKrKYtfhrNqFmPvbbBtwfCQXZrlD7N1DWC70KXZUBB4uqcbR4BmQp3gS/yXJJ6KiGEiWvPCFRe7T+SMZ7VPECEUjgh+q2EzOBjkHKLiKDNFtOCwylGIImbaXjIOjpj5b4wdqVViykD0jU2Jx7wOhO2B1J5cOKYR8Za/Gx3hAt1nNWpuHignb4S5Q/dLTU0Tj4nW6m6mm/vBhG4t2b7+IC906ywHxQX3JI="
+  - secure: "uCezS6UZXFKLQZyJ0bGHg5CmwENADga8tVhghn3jGUETNoGuNBG0S2oMpaQVC0Qp2IYi1WfDJ78HVRJ7+v6Pf9PKr+jnV9Y1pB6TYSIIjmlaK80GjJvV7rTP/9ewMa9vOLhHKGqkVasMzLdeUsL6T2XKgLy2FxyvDUjukAgyvH/8pAmXIoK/HKwvWmqdxF9QXZRIx2xF9KLcEe4Q8d+tJYccLjSOHst9w9Jq79gpPJ8XFQVwtREI+I1IJllb1xeFmvbnHxB7u/4oKQxCm2dCxyJx30jYkpngj9ma2xj0s3b0vUuPEDEF+cXw6Prn/BNiV0ougt4a2xYio32guUv9BlAEU4G5mUuOwlBGg2uEg2pSsDq+ybrw+fm5f5B1UxpCcqkQdeADMOl508AYcxqUZFT7JgKnXjdWBoXAmiGggSmphkEtMG0qqzCEF0IF2LZHV3linL6dScL9B95YVWbuWjnsKkIeRSGrDd4KWEs91DsrJihAB2/TGL1Ab+RQ+ba4YL6dhAKSDEipdnrMYLd4GkJvrty1Lp5Cj7Cy8iNQc0j2TkD+nDiIpBo6PYB+vYu0EwyqzAmGnRTNrbTGj5D7ayt3T5Ls+Gx7djzyd6YFRqXCzynsheHSdTXEAJNoq3wEeyjLIRVWCSGbxpZEt20LJfaSqNFV/Kuk4YdlkUbQk+0="
 notifications:
   email:
     on_success: never
     on_failure: always
   slack:
     rooms:
-    - secure: "C1ibA5Ep0MqEvKhVL+Kz47l07zwGHDQhQvAquKIDak5GLoqJiYSNjsrjVnIwQ4hc1ESJiZcU0cNw4lYkigMh0gC8A9BHL3JjjkmDKc6Yqy7zwCpAnyZZg427eogSp43G1HvEmUr0UeR8VYW48deBdR4rG8OmJbY0JQe0rlYmHLS4El+PP6Vtt7UDwWgeFC7drJ4+GfLj/SNj6/s0DkY5l5g5QvF3/7c5jwvKgMP1tqCCStbJ1wpHlR1Y5EAIRanF8EATFJ5mDu2FzFvFmxvVEx7JVMWhZ/JmLfOlcSY5XWtjvw39S8S3rlC/0M9PmYByNudSxatXVb2v8zyBOAjYo0Wa1yHaaaeZD5UC0+26FRv0DzOrbqV0kau8Su0I797V3saLg1mFT1dWzKvjcMBPXGGuffjpjFjDW8+n2QLg+3HXHIL4SyAtrQn8nWBKZsMucwbYsgUfG40+hvDRkOf/j9wJIy5FK/ueh/dfUaCCRfgCqH8CPNdpDvrnfJ2m+DZKgxuXOMLAChSxQ6YTIBXFdui+ESeB61Bqvccyjm9IwK3OM+qDjmyrfgmnlnw8iRxQKdjp1rHpMsom0eHrvm8i8Fvci77uABVEnlpYKRmBWlHfmlMl02xJrUNMFtPttQqDtPNMj9GEo1Z3I5wFE6h26j9UX6YETofgeggT/w2Bh7w="
+    - secure: "rwWQuT5QqQ5wEjvHY1wM+5go0KC5ssgq2ALCtJgmiP1u+Hla8sUQhHZdQCPwQIpB7lOmFGciZqLEkpeiDYg19FMQD2ivyOoPBs4mPkecScC3aWZlHFjx+0bU0nsGq1GWV7D0U+Unf5ypAZXuZERJyAIh57LWMw/lxHLLmT6ZjSIkxRkxzwvNn3KUrYYxdK56QU70K2ejkS+lk7DQm4tXoldS+sC3V5wTN89gF+/UWtQdrILYOiwu4pAbs2w7vBfnhyE7vVzzb68MTb79cd26beKgiN5DNb1HYeV2Kd+Gw3zOAGc91kf03M5KKKBlLG/PekzlrckzMLoAPJdVrqFDXMeeFXAwz35vrTEJoAUhyJslPbS0lS8CLHrVrKpcxlFOrLgV+7iMze43zWQkBrhVHK8xVv/XxeBlcBUEidiK8C8rt33kh0pCPW/51HK27TXggxCLYeagcAy/duout9A+LQUNRN3WUb+TG5WxXbUcL5RNk/e9egVaZP3UlTy3KKHp+X0piz0IBMjj14WIAyVPO2t4a12KWQRQFkB1Dytgl/aYwQM6SikIyzdAObqzvn7GO9Nfz9GVASQMWRXAu+b++hXXQm3bqDOtTXBXC2C/g3u5XB2wsFVLPHbSWUqwh3ij8tJ304LdXo+zSpCPMozREHTwSlIq8blahdi723wd8oA="
     on_success: always
     on_failure: always
+before_install:
+- source scripts/ci/environment.sh
+- pip3 install pyinvoke
 
-before_install: source scripts/ci/environment.sh
+install: inv docker.build
 
-install: docker build -t $REPO:$COMMIT .
-
-script: true
+script: inv test
 
 after_success:
-- docker tag $REPO:$COMMIT $REPO:$TAG
-- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
-- docker login -u $DOCKER_USER -p $DOCKER_PASS
-- docker push $REPO
+- ci-tag-build
+- hub-push
+- hub-update-readme
+
+deploy:
+  provider: pypi
+  user: joeblackwaslike
+  password:
+    secure: "vyOUpaXF0O2zWPbPgU1Pqmb4qCbbj7AcvfRk6xTWi8VO86hjgZBSnPFHKsGPmcskEExXrQH4Bm/av2eYMqkleUwpAkc8+YlUxh8z5xwQTpI7eTzd1WcgkssxyJsYGZ/uZce01zDGP7DDibPL/PF1YT8+weQE8yxww3mLW7yWCP5Kd8E3fq4DnNX2Kw5gcC+X+6Mo1k2TFlYU0rKjtmvyxbqipopVJ6ACiCaC3QcP5/FaP+0fmyMYya/l+lYmboF5MysHkvfLtgMOXaVSuGaY5EHtV14t1BPCX5bogFezffHH3e4vj8//n6zEFDbP38nEZtSJh26Aa1fLagdu+j9TVEmuTEmVm6adtqHIb8aXhjuch9LeIU8dLwxMSZrAM6kcGaMp5UVypDLemCr4erSJG+wHt+FQvcsz85hMLf3m4pLRaNHVqMjJN50XrvH2G9TUHk0zb0P6elGk/TALWymM6rEdGWoWFfggSVxtf/rk6PBQ4N/igfoGYBUIWqXMhTONnlsHEK3g03mkFwdGPVdk0vd6Kik20eOwwT3iaiDPPPtZoOzDwor8P6fEVXOinvOIkHMhpFCd73+o7X/OBhiVH1EnvPHtpxj9ZnVzPp0/LJshfDP4kb3WZmxMdWU0qMKre+ZiBw2ebr7ZLMvagtdYMxL+UkvgyLyKFpBgITrfJzc="
+  on:
+    tags: true
