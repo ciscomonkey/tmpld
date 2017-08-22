@@ -5,8 +5,9 @@ from invoke import task
 
 @task(default=True)
 def build(ctx, tag=None):
-    print('**tag**: ', ctx.docker.tag)
-    ctx.run("docker build -t %s --pull --force-rm ." % (tag or ctx.docker.tag))
+    cmd = "docker build -t %s --force-rm ." % (tag or ctx.docker.tag)
+    print('****    command: ', cmd)
+    ctx.run(cmd)
 
 
 @task
