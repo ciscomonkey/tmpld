@@ -16,7 +16,7 @@ RUN     apt-get update && \
 
 
 ARG     TMPLD_VERSION
-ENV     TMPLD_VERSION=${TMPLD_VERSION:-0.2.3}
+ENV     TMPLD_VERSION=${TMPLD_VERSION:-0.2.4}
 LABEL   app.version=${TMPLD_VERSION}
 
 RUN     pip3 install tmpld==$TMPLD_VERSION
