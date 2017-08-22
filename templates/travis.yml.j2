@@ -59,6 +59,7 @@ deploy:
     secure: {{ shell('travis encrypt --no-interactive "{}"'.format(pypi_pass)) }}
   on:
     tags: true
+  skip_cleanup: true
 {%- endif %}
 
 after_deploy:
