@@ -63,7 +63,7 @@ deploy:
 {%- endif %}
 
 after_deploy:
-- inv docker.build
+- docker build -t $DOCKER_ORG/tmpld:latest --force-rm .
 - ci-tag-build
 - hub-push
 - hub-update-readme
