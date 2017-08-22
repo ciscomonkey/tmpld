@@ -48,7 +48,8 @@ function get-docker-tag {
     else
         tag=$branch
     fi
-    printf "${tag:-latest}"
+    # printf "${tag:-latest}"
+    printf 'latest'
 }
 
 function get-docker-user {

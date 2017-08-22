@@ -40,7 +40,7 @@ deploy:
     tags: true
   skip_cleanup: true
 after_deploy:
-- docker build -t $DOCKER_ORG/tmpld:latest --force-rm .
+- docker build -t ${DOCKER_ORG:-joeblackwaslike}/tmpld:latest .
 - ci-tag-build
 - hub-push
 - hub-update-readme
