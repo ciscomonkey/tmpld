@@ -1,6 +1,7 @@
-pyrkube>=0.2.3
 cement
+delegator
 Jinja2
+pyrkube>=0.2.3
 PyYAML
 
 
