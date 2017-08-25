@@ -4,7 +4,7 @@ set -e
 
 REMOTE=${1:-origin}
 
-CURRENT_TAG=$(git tag | sort -nr | tail -1 | sed 's/^v//')
+CURRENT_TAG=$(git tag | sort -nr | head -1 | sed 's/^v//')
 
 CURRENT_MAJOR=$(echo $CURRENT_TAG | cut -d'.' -f1)
 CURRENT_MINOR=$(echo $CURRENT_TAG | cut -d'.' -f2)
