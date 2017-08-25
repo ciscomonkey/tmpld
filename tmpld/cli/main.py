@@ -60,12 +60,13 @@ class TmpldController(CementBaseController):
                     'You need to install pycaps to use the caps extension')
             return pycaps.get_caps()
 
-    def _get_config(self):
-        config = self.app.config.get_section_dict('tmpld')
-        self.app.log.debug('Using configuration: %s', config)
-        return config
+    # def _get_config(self):
+    #     config = self.app.config.get_section_dict('tmpld')
+    #     self.app.log.debug('Using configuration: %s', config)
+    #     return config
 
-    def _get_extensions(self, config):
+    def _get_extensions(self):
+        config = self.app.config.get_section_dict('tmpld')
         extensions = {name: self._get_ext(name, config)
                       for name in config['exts']}
         self.app.log.debug('Got extensions: %s', extensions)
@@ -96,8 +97,10 @@ class TmpldController(CementBaseController):
     @expose(hide=True)
     def default(self):
         self.app.log.debug('CLI arguments: %s', self.app.pargs)
-        config = self._get_config()
-        extensions = self._get_extensions(config)
+        config = self.app.config.get_section_dict('tmpld')
+        self.app.log.debug('Using configuration: %s', config)
+        # config = self._get_config()
+        extensions = self._get_extensions()
         template_env = self._get_template_environment(extensions)
         templates = self._get_templates()
         self.render_templates(template_env, templates)

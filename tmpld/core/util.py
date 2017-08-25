@@ -13,10 +13,10 @@ import sys
 import pwd
 import grp
 import io
-import subprocess
 import collections
 import contextlib
 
+import delegator
 import jinja2
 
 
@@ -51,11 +51,11 @@ def set_defaults(d, d2):
     return d
 
 
-def shell(command, return_code=False):
-    code, output = subprocess.getstatusoutput(command)
-    if return_code:
-        return code == 0
-    return output
+def shell(command, test=False, **kwargs):
+    proc = delegator.run(command, **kwargs)
+    if test:
+        return proc.exit_code == 0
+    return proc
 
 
 def xpath(xml, expression):

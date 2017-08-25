@@ -37,9 +37,10 @@ setup(
     packages=find_packages(),
     package_data={'': ['LICENSE']},
     install_requires=[
-        'pyrkube>=0.2.3',
         'cement',
+        'delegator',
         'Jinja2',
+        'pyrkube>=0.2.3',
         'PyYAML'
     ],
     extras_require=dict(

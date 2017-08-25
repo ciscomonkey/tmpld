@@ -4,7 +4,7 @@ Hello {{ env['NAME'] or 'default name' }}
 NAME was in environment and is {{ env['NAME'] }}
 {% endif %}
 
-Directory listing {{ shell('ls -la') }}
+Directory listing {{ shell('ls -la').out }}
 
 
 {# {% set pod = kube.get('pod', 'couchdb-0') %} #}
