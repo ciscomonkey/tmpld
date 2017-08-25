@@ -1,5 +1,11 @@
 # Changelog for tmpld
 
+## 0.2.5
+### Aug 25, 2017
+* Shell global uses delegator.py package, to print the stdout of a shell command, you will need to select the out attribute of the returned object.
+* Cleaned up cli logic abit.
+
+
 ## 0.2.4
 ### Aug 22, 2017
 * Added `strict` argument, when used it will raise an exception if an undefined variable is missing.
