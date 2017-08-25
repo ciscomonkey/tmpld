@@ -15,17 +15,14 @@ RUN     apt-get update && \
         pip3 install --upgrade pip requests setuptools
 
 ARG     TMPLD_VERSION
-ENV     TMPLD_VERSION=${TMPLD_VERSION:-0.2.4}
+ENV     TMPLD_VERSION=${TMPLD_VERSION:-0.2.5}
 LABEL   app.version=${TMPLD_VERSION}
 
 RUN     pip3 install tmpld==$TMPLD_VERSION
 
 ENV     TMPLD_ENVIRONMENT production
 ENV     TMPLD_LOG_LEVEL INFO
-ENV     TMPLD_EXTENSIONS kube
 ENV     KUBE_NAMESPACE default
 ENV     KUBE_DOMAIN cluster.local
 
-ENTRYPOINT  ["/dumb-init", "--"]
-
-COMMAND ["tmpld"]
+ENTRYPOINT  ["/dumb-init", "--", "tmpld"]
