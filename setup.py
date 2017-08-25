@@ -38,7 +38,7 @@ setup(
     package_data={'': ['LICENSE']},
     install_requires=[
         'cement',
-        'delegator>=0.0.13',
+        'delegator.py>=0.0.13',
         'Jinja2',
         'pyrkube>=0.2.3',
         'PyYAML'
