@@ -4,7 +4,7 @@ target: tmpld/__init__.py
 
 {%- set name = data.get('vars')['name'] -%}
 {%- set version = data.get('vars')['version'] -%}
-{%- set year = shell('date +%Y') %}
+{%- set year = shell('date +%Y').out.strip() %}
 
 """
 tmpld

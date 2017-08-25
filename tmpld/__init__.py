@@ -15,4 +15,4 @@ __title__ = 'tmpld'
 __version__ = '0.2.5'
 __author__ = "Joe Black <me@joeblack.nyc>"
 __license__ = 'Apache 2.0'
-__copyright__ = 'Copyright <Command 'date +%Y'> Joe Black'
+__copyright__ = 'Copyright 2017 Joe Black'

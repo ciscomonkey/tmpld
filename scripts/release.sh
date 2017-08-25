@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 REMOTE=${1:-origin}
 
 CURRENT_TAG=$(git tag | sort -nr | tail -1 | sed 's/^v//')

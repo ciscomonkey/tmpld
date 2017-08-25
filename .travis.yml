@@ -13,14 +13,16 @@ env:
   - DOCKER_USER=joeblackwaslike
   - DOCKER_ORG=joeblackwaslike
   # DOCKER_PASS
-  - secure: <Command 'travis encrypt --no-interactive "DOCKER_PASS=6kT9CnyRacARkgz*}Hny.T3@TUDEQz"'>
+  - secure: "RDiNFvDHtG/r9lv641I/Dybz01KUlD20nGsHcLgV7bBmexo58n+0C3dY0XClHkxRooF6948q27iEkGneuRJBsL37jgn82PynYe9spOUgEI5nIEOLI5efjn0cgkSTPw2TTHtA1FdFK0W1KheV+xX+6/VMYYIiqih566BvOpX4tWQQVQelN3RQujps+fD1f/AKCVlmi9ieiIvtMgKQj1fMFNOSJy1vJcplYtQ3uze73Caxeb+ohXmdiWX+QiFbEmtP2kIU1+OSNM8wBGt/BOq2lJcj/ehcQNvnN8k/ofGzFDU8YoMKF+O+wO5JQZlD3DHtKnKQbpE8QLwqZaAYYN5DEKNOkaTJ2Hfzc49R2eaRaLX0bCNJyBE5xnXGWn9wk16ut1bZBsDGsyJ+1CHxRFLtfS88I89cd1QSVTIzUV4tbcgbhIvAuK6ewhkwS9y/gFhkAcS8xkB8hUtg3f/iChkEj90qX6bZsTQENsm+XGx1PCR+0LrPeNtkzFVb1kZuzqD0dCHATW57vtuBvRe+5sJI79U4AuahiS53jwd7Poiv/nH0OXgaSXXmgyOESm2fgwrsVGRHKqopcQ5IAZ8y94OHWo3SknqN+g4FG+6v8GOwzQmHqGvklKJVEqEeS89+Yiukl7uboakAH6KHrbhloBOeIwwlehnVENNyTbJFBoQkOR8="
+
 notifications:
   email:
     on_success: never
     on_failure: always
   slack:
     rooms:
-    - secure: <Command 'travis encrypt --no-interactive "valuphone:Csf6WHa2TfyPFUrWtkmMeb4u"'>
+    - secure: "hX536w2/tLzlSckF59IoXPShJPR1j0DfIreE/fw0mO/svV6nL4WroqmgfbnJDkqZt66XUkF8paKsGyGwCYwsVYJiaj7PtfWKpRW6zKelIB4tq1fAjaCAlkz6u8orrxHqbapqeOCCMekhs6vKet1dIuXiJ5sCOOJKMPCP+2LhcjrfOz+9ari3E/5MMTYzfpNTuvFlEJzbt+GTlBOF/BR4TICPhQ2yYwoAMZ70XKXn1K4peRo1ng5mkqMs5BOMzHbSqUIrntHZzcamWoYIc7k1bK0EsdRHAFJi01nGJYXksTlj7PJzjZWk7GK4b7o/biUDUaJ5bruNNBUF4m9vgWRk12RpXwjChfSXQiJJIy2D3IfvEQjo90LMuw4uUBUiHLsMEIXq6uBknmya6nfxDfNPo6Q3i/vVy21T7RSuFQjhOPUkML8fHexxGjMnwnjPoV90YQijW9k81fp4ax8QhcnAYXvfs6edlmGvMPZb4pxsCnVBWRuETT9ef2yh6G8al8ybj0+9ju6gCqHRuIuALkBYQFqjaojOV1lX+LwkQ9WTaI/q5K/pw5sA8nCS+bvnR030CaKcc21n3zJlhIe4GkjpRv8gvue2SO7QEH8lSLNQnGY/Oqnuzr1P7JVAenRUvkR/4bKoPxuN6rZRVQnTBo//z8sleCYktcss6QQFZfMs+rE="
+
     on_success: always
     on_failure: always
 before_install:
@@ -35,7 +37,8 @@ deploy:
   provider: pypi
   user: joeblackwaslike
   password:
-    secure: <Command 'travis encrypt --no-interactive "GBsrJpyjY8J39mGVwdjo"'>
+    secure: "pmqq2ca7plYL/am3IUUmNPP96aH1FXcDjbgDrtU3ywKoc6SlB+vHqb43SP32ZI65GHSU9Iw4tNSqRTKCeN5PvYEAMtredT5hm/hyYvib39b9urhCPqhfLBnaah/S1kZ+i1bu5pBKmpM0uYA2JUyJo6v7bmWXjtbw2U98PP6/1I4zjtxstAL6gucVhFuJdyBDMnbwgfO9fblqZgKXROANKK6jMQXI2yepnyGpZpA9aB9vJflSeFt5Y6xEqlsysifZGvv0YAqj08qTwLV+zPCBVlDWcqdo++mKJFTgfP5NEvcb3grkUIi3pP/DQy88wR41xFqpg9NmS62ZpDsFYEYFAQeFANU8n3bJ60sqv57JGIhhBbVOlgqu4mRp1Pq1fk8apeQ1fVwVKtYKV3vnDrpZJiB9y3cEz8ZQUL69eVWBtATBIMlnYPvqpvqpFYCAyOEBjEJ99wo2v+mPAOj4UcrGz5w0PoorzmxKh77WHmqaqdAHlDGfAKsX5JntroYXRjG+cCER9WPJYjcfS9ehzenFfCL+t+69Ad5BV5baJeiCwjUyqip2w0z3Ta0dlMfFTJDXvm0VyH9xpz03ejQe64O0vq7JOXAs+zf4IHks90GdNEWu4HFbCFidCcEuf6T2hJXJepZ3383efuRTiYGPiQKVW+mEj2Gl0ismEtD++D/UfUg="
+
   on:
     tags: true
   skip_cleanup: true
