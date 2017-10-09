@@ -29,9 +29,9 @@ setup(
     ],
     author='Joe Black',
     author_email='me@joeblack.nyc',
-    url='https://github.com/joeblackwaslike/tmpld',
+    url='https://github.com/telephoneorg/tmpld',
     download_url=(
-        'https://github.com/joeblackwaslike/tmpld/tarball/v%s' % version),
+        'https://github.com/telephoneorg/tmpld/tarball/v%s' % version),
     license='Apache 2.0',
     zip_safe=False,
     packages=find_packages(),

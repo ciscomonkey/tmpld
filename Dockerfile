@@ -1,4 +1,4 @@
-FROM    joeblackwaslike/debian:stretch
+FROM    telephoneorg/debian:stretch
 
 MAINTAINER Joe Black <me@joeblack.nyc>
 
@@ -25,4 +25,5 @@ ENV     TMPLD_LOG_LEVEL INFO
 ENV     KUBE_NAMESPACE default
 ENV     KUBE_DOMAIN cluster.local
 
-ENTRYPOINT  ["/dumb-init", "--", "tmpld"]
+ENTRYPOINT ["/bin/sh", "-c"]
+CMD     ["tmpld"]
