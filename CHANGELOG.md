@@ -1,5 +1,14 @@
 # Changelog for tmpld
 
+
+## 0.2.7
+### Oct 21, 2017
+* Added gen_user, gen_pass, and gen_token globals.
+* Added a whole suite of filters, see filters.py for details.
+* Automatically return the output of a shell command unless test=True is passed.
+* Automatically strip output of shell commands.
+
+
 ## 0.2.5
 ### Aug 25, 2017
 * Shell global uses delegator.py package, to print the stdout of a shell command, you will need to select the out attribute of the returned object.

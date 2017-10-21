@@ -15,9 +15,34 @@ import grp
 import io
 import collections
 import contextlib
+import string
+import random
 
 import delegator
 import jinja2
+
+
+def gen_pass(length=32):
+    char_set = (string.ascii_letters +
+                string.digits +
+                '!#%&()+,-.:;<=>?@[]^_{|}~')
+    return ''.join(random.sample(char_set*length, length))
+
+
+def gen_user(length=16):
+    with open('/usr/share/dict/words') as fd:
+        words = fd.read().split()
+    user = ''
+    while len(user) < length:
+        user += random.choice(words)
+    return user[:length+1]
+
+
+def gen_token(length=64):
+    char_set = string.ascii_letters + string.digits
+    return ''.join(random.sample(char_set*length, length))
+
+
 
 
 def get_ownership(file):
@@ -55,7 +80,7 @@ def shell(command, test=False, **kwargs):
     proc = delegator.run(command, **kwargs)
     if test:
         return proc.exit_code == 0
-    return proc
+    return proc.out.strip()
 
 
 def xpath(xml, expression):

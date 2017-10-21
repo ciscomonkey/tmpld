@@ -16,7 +16,7 @@ import yaml
 import jinja2
 from jinja2 import FileSystemLoader
 
-from . import util, tags
+from . import util, tags, filters
 
 
 class TmpldEnvironment(jinja2.environment.Environment):
@@ -59,7 +59,10 @@ class TemplateEnvironment:
             re=re,
             yaml=yaml,
             xpath=util.xpath,
-            jsonpath=util.jsonpath
+            jsonpath=util.jsonpath,
+            gen_user=util.gen_user,
+            gen_pass=util.gen_pass,
+            gen_token=util.gen_token
         )
     )
 
@@ -73,6 +76,7 @@ class TemplateEnvironment:
         if strict:
             self.env.undefined = jinja2.StrictUndefined
         self.env.globals.update(self.glbls)
+        self.env.filters.update(filters.FilterModule.filters())
 
     def render(self, template):
         if not template.rendered:

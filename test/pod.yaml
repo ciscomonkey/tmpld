@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tmpld
+  labels:
+    app: tmpld
+spec:
+  containers:
+  - name: couchdb
+    image: joeblackwaslike/couchdb:latest
+    volumeMounts:
+    - name: config
+      mountPath: /config
+  - name: healthz
+    image: joeblackwaslike/couchdb:latest
+    command:
+    - /usr/local/bin/goss
+    - -g
+    - /goss/goss.yaml
+    - serve
+    ports:
+    - name: healthz
+      containerPort: 8080
+  initContainers:
+  - name: config
+    image: joeblackwaslike/tmpld:latest
+    args:
+    - tmpld /templates/*.j2
+    volumeMounts:
+    - name: templates
+      mountPath: /templates
+    - name: config
+      mountPath: /config
+  # - name: init-mydb
+  #   image: busybox
+  #   command: ['sh', '-c', 'until nslookup mydb; do echo waiting for mydb; sleep 2; done;']
+  volumes:
+  - name: templates
+    configMap:
+      name: couchdb-templates
+  - name: config
+    emptyDir: {}

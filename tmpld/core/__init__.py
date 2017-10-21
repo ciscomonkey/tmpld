@@ -8,4 +8,4 @@ Core logic for tmpld.
 :license: Apache2.
 """
 
-from . import util, frontmatter, template, environment, tags
+from . import util, frontmatter, template, environment, tags, filters

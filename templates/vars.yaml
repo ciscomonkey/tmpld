@@ -2,7 +2,7 @@ name: tmpld
 heading: tmpld template renderer
 description: |-
   Jinja templates on steroids.
-version: '0.2.6'
+version: '0.2.7'
 github:
   user: joeblackwaslike
   org: joeblackwaslike

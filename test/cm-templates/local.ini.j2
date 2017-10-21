@@ -1,0 +1,31 @@
+---
+target: /config/local.ini
+---
+
+{% set config = kube.get('configmap', 'couchdb').data -%}
+
+[couchdb]
+database_dir = {{ config.get('couchdb.data-dir', '/volumes/couchdb/data') }}
+view_index_dir = {{ config.get('couchdb.data-dir', '/volumes/couchdb/data') }}
+
+[chttpd]
+require_valid_user = {{ config.get('couchdb.require-valid-user', 'true') }}
+port = {{ config.get('couchdb.port', '5984') }}
+bind_address = 0.0.0.0
+
+[httpd]
+require_valid_user = {{ config.get('couchdb.require-valid-user', 'true') }}
+port = {{ config.get('couchdb.port', '5986') }}
+bind_address = 0.0.0.0
+
+[cluster]
+q={{ config.get('couchdb.shards', '2') }}
+n={{ config.get('couchdb.replicas', '1') }}
+r={{ config.get('couchdb.read-quorum', '1') }}
+w={{ config.get('couchdb.write-quorum', '1') }}
+
+[couch_httpd_auth]
+iterations = 1000
+
+[log]
+level = {{ config.get('couchdb.log-level', 'info').lower() }}
