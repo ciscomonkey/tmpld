@@ -9,21 +9,31 @@ services: docker
 env:
   global:
   - GITHUB_USER=joeblackwaslike
-  - GITHUB_ORG=joeblackwaslike
+  - GITHUB_ORG=telephoneorg
   - DOCKER_USER=joeblackwaslike
-  - DOCKER_ORG=joeblackwaslike
+  - DOCKER_ORG=telephoneorg
   # DOCKER_PASS
+<<<<<<< HEAD
 secure: "aAaw6nmc0PYV5sSMJsWBwXy20otv7dn41w9EPjmtD85OM+ugzaIEXy2LNovoS+JUoJYiwlL+gjeZlbxPDhSPHe2azSH6wroW7ePRuXOFwogt6cmlCh76S0GjrXtkTTc/9kY5e3sxUTLwguXwBlMWFT5i1jKsXdKH898px8AR9hdDEDPrkOUfPT3Y2Cq+ftcpjqqRWS4GIEQ/ABqw8L/9KqETbd6zM9AjaWwTZ/Sh++TxZFg26SHM1lTU54hxzrwK4b/pLcutLihUBFHuRJ4aM0hxi6qCPeFzSGgiDq1JYYN7B+Kuxfr4Xd/rJFeclTMT8czSmv7ibdsGNGZGqizqAQ9s4VMUP1OW0CBhcVcaweUuhmK6w4eofRubnAOQbjFPpJIYC/2N3fA9cUXawzV4nRDAuaGJwUksvVGWiH9Ss0evNI82yZzk9qtXj8/PbKXE+cG4vpvKeSg0l4akdPw+pI51cz3HjFbYEGstx31GMHuMVvkMoFe8ZL53fAhqSMO/1QcXJWXOL2tD5pFVtAUMhem5+pSWL7lXPQIQG2+AOEit1rXXQJ76lVBwCjDzTr7obTzl0J7lxBh18mIJa2vr0lu96KX/wFX+k6I4kvZF/qmNV73n638zL7JZXbGPRTsN3e+luyOWMke4a9d61S4VQDItyiw9LHKIcQ08R23CRy8="
 
+=======
+  - secure: "iBatj0ClUE7al3PtffXBWkjb0J83mYqiYmFNCEGBkuhyJ2tYpmMntGlJpEZGCCHGK3aLpF2qHZoiTeyckd7+OT8mNPvxPXEFCNF96ARIo6gQ1Wc4eJpFtn1Vvzjr9cGWu555NUvxwsw+wuTDwTQgziv3/siWEswylKWFzGSS7zQDYXt4UT9ttNzIawt5ZORx8caJDNr47emAxEMCIU5sR6RxhOESHNiWtIbTzMo32i+V33ofhtBsLeHLqxibUnqaralUeF911T/BPFYanKElFMK8vfUk+3GoUNtLatqK5MwgmG1CF7dIQ977VXFM3MzW0X+KdmlqF8m1dJnqsy6ltusazJBxT+7FGiX0bHQvOZfClVRL9JwBfkxaJOeQI39ckM9Nfc+Q6RB0E52cdRmIIX0PPyUbaCg4HsTvwsIMVoiIxATaHK1SX95aZv+PSIwj2gt/KIn4r3CjreY4N0dtuDOTgyu8uug2UZ/lvwDyzoUAFKoyIpq5bSo+fCj7N+90aEouRVZC/JS1CYTb4r1mLgxsMu+dZcZW0NRiaScPh2oEvhSSCvQR6XUuM+4oyJl9arM5cdtjMpPTaG48RDkU7xLZmdmALFaMMHGSSiUbMUs23b+YfP5s5r7jgemMhVV+rozzTfn85v3mfCc9eymnXqtQR9tPSJ3fKZqHjcykRro="
+>>>>>>> 3b171e3597578a8e0411f23a2d96c81841770d3a
 notifications:
   email:
     on_success: never
     on_failure: always
   slack:
     rooms:
+<<<<<<< HEAD
     - secure: "w3iyVWRUW0hhk7OpzcKte1tjRTnCbk3THKPASmAg9mDRDYDZtmbKfasJbQAkJXM42v+s/u49BN6vCK+9SfPb/nDdLr0INFyuvn1kT9ci4VSGZE7AE4R54j9FZapz+KX9u/a3vOKxuC4Mmgp9GwX8A6BVR3a6PaL6Zky2GRj3oFQzE1gIRoVZBYBnS+gUQpf8hqJRT5DGy+ZJ+Y/EQiRO/YT/HCKm6GnlEmo/eUOE97rqFAGk/+WOvlpP7F6Ph/DqOGjKqiVWOh360yBYj6Pfpb+il5PFbLfSwJIbrMrTB/UATbTlvm6KWKkuYxNc5kt4QdsPlcOfF1teRtsB4CDSBM6Htgmq3jRBJErBtbCcLBE0uxf7Y6b0pPbRGaOrYQxF41bLpCLNQUgk6Ur6pj0mlVS59EQmtriJNz/1CQEWE8hNdM/5vAXPcuAlJWm/2s73zKvk2QA6YKyYligwShUs1CuukB/B7dtdDVKgi1NDp8SkYkGcbSneChzb42zcwQbqr8qw0SaP2E3sgKzkjYIk5Q4r7jEyZEtaR64Ewa7hwG4e1ab6Kx5ZL592jE09GDGJGqXQpOKnRJlX9iIAnnfPmwpJh2rQXLeHiYKLvY/Yz5z0Xrmzvz4KnrQnrc3WfWux37gYC5ProcKj7gFUdY8HenRe/v8ULA/XrYHZeTd8qMg="
    on_success: always
+=======
+    - secure: "D1N+lYu/u4DDllYRafdqHc1Ok9+IkaCmQWKG2/R1YJApNqOQkkQjRWZ01mIIqKAoJxpZ2O4cSha4CuNLLjzol9vCj34ZLi8Oji/drY9VdGZmv/KBf015iWprMpc6IGL33LH7uaYCOo7CbeoLWstw41HtCaGePOjfiLa059eHfivnmuvjH0S4SGSjpDIFrWfquBcoMmASr0OHM/fnlnYb8LD2AaflVqID+/P8k2gyYCWEr/Ea4Id2T5EPUyvoEq9b7H0OD6XakaGr7qcjae76g6oL948fiFLfuDD1dD2BNe+V0zMeLRLzPMPs3lfFPUBBBu1p94rba51hGOjwFMFRgngARAl84wLIEIaE5t1S2vETWN6GFkDr8MNRr+AzjPogFVcSyXf+uSAoBgc+b8ZGcXiA7Pst2MXathLw/zqpCtPiZ8b7ATkhcPgYN6lkipknXPVQeDqb68TKesiqZu5ZQZXGEUq0feqamLGrcmHLV3g0hniuooqaqFKjblA+kKCyYUrK0bLuufqF8P6h2HIp9prvW+/RZS7mhxJXPfE8QSk6rLVFMj/tLiR5+eaaFwaxgT8a3Ne6GFls0poOIMJPuhYd/zhkQ3gUVCFZLGtQUSFWa57ft+7ohaR6Ycsl1lrkC16kob5e64cvFvFx7ARPAzurTrQ0e0pl1dVwM6rs5R8="
+    on_success: always
+>>>>>>> 3b171e3597578a8e0411f23a2d96c81841770d3a
     on_failure: always
+
 before_install:
 - source scripts/ci/environment.sh
 - pip install invoke
@@ -32,6 +42,7 @@ install: pip install -e .
 
 script: inv test
 
+<<<<<<< HEAD
 deploy:
   provider: pypi
   user: joeblackwaslike
@@ -42,6 +53,9 @@ deploy:
   skip_cleanup: true
 
 after_deploy:
+=======
+after_success:
+>>>>>>> 3b171e3597578a8e0411f23a2d96c81841770d3a
 - inv docker.build
 - ci-tag-build
 - hub-push

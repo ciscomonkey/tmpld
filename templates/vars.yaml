@@ -5,9 +5,9 @@ description: |-
 version: '0.2.7'
 github:
   user: joeblackwaslike
-  org: joeblackwaslike
+  org: telephoneorg
   repo: tmpld
 docker:
   user: joeblackwaslike
-  org: joeblackwaslike
+  org: telephoneorg
   repo: tmpld
