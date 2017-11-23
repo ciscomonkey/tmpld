@@ -1,19 +1,13 @@
-addons:
-  apt:
-    packages:
-    - realpath
 language: python
 python:
 - "3.6"
 services: docker
 env:
   global:
-  - GITHUB_USER=joeblackwaslike
-  - GITHUB_ORG=telephoneorg
   - DOCKER_USER=joeblackwaslike
   - DOCKER_ORG=telephoneorg
   # DOCKER_PASS
-secure: "aAaw6nmc0PYV5sSMJsWBwXy20otv7dn41w9EPjmtD85OM+ugzaIEXy2LNovoS+JUoJYiwlL+gjeZlbxPDhSPHe2azSH6wroW7ePRuXOFwogt6cmlCh76S0GjrXtkTTc/9kY5e3sxUTLwguXwBlMWFT5i1jKsXdKH898px8AR9hdDEDPrkOUfPT3Y2Cq+ftcpjqqRWS4GIEQ/ABqw8L/9KqETbd6zM9AjaWwTZ/Sh++TxZFg26SHM1lTU54hxzrwK4b/pLcutLihUBFHuRJ4aM0hxi6qCPeFzSGgiDq1JYYN7B+Kuxfr4Xd/rJFeclTMT8czSmv7ibdsGNGZGqizqAQ9s4VMUP1OW0CBhcVcaweUuhmK6w4eofRubnAOQbjFPpJIYC/2N3fA9cUXawzV4nRDAuaGJwUksvVGWiH9Ss0evNI82yZzk9qtXj8/PbKXE+cG4vpvKeSg0l4akdPw+pI51cz3HjFbYEGstx31GMHuMVvkMoFe8ZL53fAhqSMO/1QcXJWXOL2tD5pFVtAUMhem5+pSWL7lXPQIQG2+AOEit1rXXQJ76lVBwCjDzTr7obTzl0J7lxBh18mIJa2vr0lu96KX/wFX+k6I4kvZF/qmNV73n638zL7JZXbGPRTsN3e+luyOWMke4a9d61S4VQDItyiw9LHKIcQ08R23CRy8="
+  - secure: "aAaw6nmc0PYV5sSMJsWBwXy20otv7dn41w9EPjmtD85OM+ugzaIEXy2LNovoS+JUoJYiwlL+gjeZlbxPDhSPHe2azSH6wroW7ePRuXOFwogt6cmlCh76S0GjrXtkTTc/9kY5e3sxUTLwguXwBlMWFT5i1jKsXdKH898px8AR9hdDEDPrkOUfPT3Y2Cq+ftcpjqqRWS4GIEQ/ABqw8L/9KqETbd6zM9AjaWwTZ/Sh++TxZFg26SHM1lTU54hxzrwK4b/pLcutLihUBFHuRJ4aM0hxi6qCPeFzSGgiDq1JYYN7B+Kuxfr4Xd/rJFeclTMT8czSmv7ibdsGNGZGqizqAQ9s4VMUP1OW0CBhcVcaweUuhmK6w4eofRubnAOQbjFPpJIYC/2N3fA9cUXawzV4nRDAuaGJwUksvVGWiH9Ss0evNI82yZzk9qtXj8/PbKXE+cG4vpvKeSg0l4akdPw+pI51cz3HjFbYEGstx31GMHuMVvkMoFe8ZL53fAhqSMO/1QcXJWXOL2tD5pFVtAUMhem5+pSWL7lXPQIQG2+AOEit1rXXQJ76lVBwCjDzTr7obTzl0J7lxBh18mIJa2vr0lu96KX/wFX+k6I4kvZF/qmNV73n638zL7JZXbGPRTsN3e+luyOWMke4a9d61S4VQDItyiw9LHKIcQ08R23CRy8="
 
 notifications:
   email:
@@ -22,7 +16,7 @@ notifications:
   slack:
     rooms:
     - secure: "w3iyVWRUW0hhk7OpzcKte1tjRTnCbk3THKPASmAg9mDRDYDZtmbKfasJbQAkJXM42v+s/u49BN6vCK+9SfPb/nDdLr0INFyuvn1kT9ci4VSGZE7AE4R54j9FZapz+KX9u/a3vOKxuC4Mmgp9GwX8A6BVR3a6PaL6Zky2GRj3oFQzE1gIRoVZBYBnS+gUQpf8hqJRT5DGy+ZJ+Y/EQiRO/YT/HCKm6GnlEmo/eUOE97rqFAGk/+WOvlpP7F6Ph/DqOGjKqiVWOh360yBYj6Pfpb+il5PFbLfSwJIbrMrTB/UATbTlvm6KWKkuYxNc5kt4QdsPlcOfF1teRtsB4CDSBM6Htgmq3jRBJErBtbCcLBE0uxf7Y6b0pPbRGaOrYQxF41bLpCLNQUgk6Ur6pj0mlVS59EQmtriJNz/1CQEWE8hNdM/5vAXPcuAlJWm/2s73zKvk2QA6YKyYligwShUs1CuukB/B7dtdDVKgi1NDp8SkYkGcbSneChzb42zcwQbqr8qw0SaP2E3sgKzkjYIk5Q4r7jEyZEtaR64Ewa7hwG4e1ab6Kx5ZL592jE09GDGJGqXQpOKnRJlX9iIAnnfPmwpJh2rQXLeHiYKLvY/Yz5z0Xrmzvz4KnrQnrc3WfWux37gYC5ProcKj7gFUdY8HenRe/v8ULA/XrYHZeTd8qMg="
-   on_success: always
+    on_success: always
     on_failure: always
 
 before_install:
