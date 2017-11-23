@@ -19,11 +19,6 @@ def build(ctx):
 
 
 @task
-def register(ctx):
-    ctx.run("twine register dist/*.whl")
-
-
-@task
 def upload(ctx):
     ctx.run("twine upload dist/*")
 
@@ -33,6 +28,6 @@ def clean(ctx):
     ctx.run("rm -rf build dist *.egg-info")
 
 
-@task(build, register, upload, clean)
+@task(build, upload, clean)
 def publish(ctx):
     pass
