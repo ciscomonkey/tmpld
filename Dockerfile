@@ -1,4 +1,4 @@
-FROM    joeblackwaslike/debian:stretch
+FROM    telephoneorg/debian:stretch
 
 MAINTAINER Joe Black <me@joeblack.nyc>
 
@@ -15,7 +15,7 @@ RUN     apt-get update && \
         pip3 install --upgrade pip requests setuptools
 
 ARG     TMPLD_VERSION
-ENV     TMPLD_VERSION=${TMPLD_VERSION:-0.2.7}
+ENV     TMPLD_VERSION=${TMPLD_VERSION:-0.2.9}
 LABEL   app.version=${TMPLD_VERSION}
 
 RUN     pip3 install tmpld==$TMPLD_VERSION
@@ -25,5 +25,5 @@ ENV     TMPLD_LOG_LEVEL INFO
 ENV     KUBE_NAMESPACE default
 ENV     KUBE_DOMAIN cluster.local
 
-ENTRYPOINT ["/bin/sh", "-c"]
+ENTRYPOINT ["/bin/bash", "-lc"]
 CMD     ["tmpld"]

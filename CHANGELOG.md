@@ -1,6 +1,11 @@
 # Changelog for tmpld
 
 
+## 0.2.8
+### Oct 21, 2017
+* Changed gen_pass function to not use uri unsafe symbols.
+
+
 ## 0.2.7
 ### Oct 21, 2017
 * Added gen_user, gen_pass, and gen_token globals.

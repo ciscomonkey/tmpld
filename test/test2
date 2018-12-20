@@ -1,7 +1,30 @@
 Hello default name
 
 
+<<<<<<< HEAD
 Directory listing 
+=======
+Directory listing total 72
+drwxr-xr-x  18 joeblack  staff   612 Oct  9 14:05 .
+drwxr-xr-x  17 joeblack  staff   578 Oct  9 14:00 ..
+-rw-r--r--   1 joeblack  staff    73 Oct  2 18:02 .dockerignore
+drwxr-xr-x  13 joeblack  staff   442 Oct  9 14:12 .git
+-rw-r--r--   1 joeblack  staff    72 Oct  2 18:02 .gitignore
+-rw-r--r--   1 joeblack  staff  1215 Oct  9 14:12 .travis.yml
+-rw-r--r--   1 joeblack  staff  2043 Oct  2 18:02 CHANGELOG.md
+-rw-r--r--   1 joeblack  staff   786 Oct  9 14:12 Dockerfile
+-rw-r--r--   1 joeblack  staff    13 Oct  2 18:02 MANIFEST.in
+-rw-r--r--   1 joeblack  staff  1476 Oct  9 14:12 README.md
+-rw-r--r--   1 joeblack  staff    57 Oct  2 18:02 requirements.txt
+drwxr-xr-x   5 joeblack  staff   170 Oct  2 18:02 scripts
+-rw-r--r--   1 joeblack  staff  2034 Oct  9 14:11 setup.py
+drwxr-xr-x   6 joeblack  staff   204 Oct  2 18:02 tasks
+drwxr-xr-x   7 joeblack  staff   238 Oct  2 18:02 templates
+drwxr-xr-x  18 joeblack  staff   612 Oct  9 14:10 test
+drwxr-xr-x   6 joeblack  staff   204 Oct  2 18:02 tmpld
+drwxr-xr-x   9 joeblack  staff   306 Oct  2 18:02 tmpld.egg-info
+
+>>>>>>> 3b171e3597578a8e0411f23a2d96c81841770d3a
 
 
 

@@ -25,7 +25,7 @@ import jinja2
 def gen_pass(length=32):
     char_set = (string.ascii_letters +
                 string.digits +
-                '!#%&()+,-.:;<=>?@[]^_{|}~')
+                '()+,-.[]^_{|}~')
     return ''.join(random.sample(char_set*length, length))
 
 
