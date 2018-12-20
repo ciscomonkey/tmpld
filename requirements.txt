@@ -1,4 +1,4 @@
-cement
+cement==2.10.12
 delegator.py>=0.0.13
 Jinja2
 pyrkube>=0.2.3
