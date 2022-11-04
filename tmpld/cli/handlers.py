@@ -10,13 +10,13 @@ Cement handlers for tmpld cement app.
 
 import sys
 
-from cement.core.output import CementOutputHandler
+from cement.core.output import OutputHandler as CementOutputHandler
 from cement.ext.ext_logging import LoggingLogHandler
 
 
 class StandardOutputHandler(CementOutputHandler):
     class Meta:
-        label = 'stdout'
+        label = "stdout"
 
     def render(self, msg, *args, **kwargs):
         print(msg)
@@ -24,7 +24,7 @@ class StandardOutputHandler(CementOutputHandler):
 
 class StandardErrorHandler(CementOutputHandler):
     class Meta:
-        label = 'stderr'
+        label = "stderr"
 
     def render(self, msg, *args, **kwargs):
         print(msg, file=sys.stderr)
@@ -32,10 +32,8 @@ class StandardErrorHandler(CementOutputHandler):
 
 class KubeWaitLogHandler(LoggingLogHandler):
     class Meta(LoggingLogHandler.Meta):
-        label = 'kwlogging'
-        console_format = (
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-        )
+        label = "kwlogging"
+        console_format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
         debug_format = console_format
 
     def debug(self, msg, *args, **kwargs):

@@ -31,15 +31,13 @@ setup(
     author="Joe Black",
     author_email="me@joeblack.nyc",
     url="https://github.com/joeblackwaslike/tmpld",
-    download_url=(
-        "https://github.com/joeblackwaslike/tmpld/tarball/v%s" % version
-    ),
+    download_url=("https://github.com/joeblackwaslike/tmpld/tarball/v%s" % version),
     license="Apache 2.0",
     zip_safe=False,
     packages=find_packages(),
     package_data={"": ["LICENSE"]},
     install_requires=[
-        "cement==2.10.12",
+        "cement==3.0.8",
         "delegator.py>=0.0.13",
         "Jinja2",
         "pyrkube>=0.2.3",
