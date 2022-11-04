@@ -12,8 +12,8 @@ import os
 import sys
 import argparse
 
-from cement import App as CementApp
-from cement import Controller as CementBaseController
+from cement import App
+from cement import Controller
 from cement import ex as expose
 
 import pyrkube
@@ -23,21 +23,22 @@ from ..core.util import try_import
 from . import handlers, loaders, util
 
 
-class TmpldController(CementBaseController):
+class TmpldController(Controller):
     class Meta:
         label = "base"
         arguments = [
+            ### add a version banner
             (
                 ["templates"],
                 dict(
                     help="template files to render",
                     action="store",
-                    type=loaders.TemplateLoader(),
+                    type=loaders.TemplateLoader,
                     nargs="+",
                 ),
             ),
             (
-                ["-d", "--data"],
+                ["--data"],
                 dict(
                     help="file(s) containing context data",
                     action=loaders.DataDict,
@@ -100,14 +101,19 @@ class TmpldController(CementBaseController):
 
     def render_templates(self, environment, templates):
         for tmpl in templates:
-            self.app.log.debug("Rendering: %s > %s", tmpl.file, tmpl.target)
+
+            print(f"{tmpl.file=}")
+            print(f"{tmpl.target=}")
+            print(f"{tmpl.rendered=}")
+            print(f"type={type(tmpl)}")
+            self.app.log.debug(f"Rendering: {tmpl.file} > {tmpl.target}")
             self.app.render("Rendering: %s > %s\n" % (tmpl.file, tmpl.target))
             environment.render(tmpl)
-            self.app.render(tmpl.print(as_string=True))
-            tmpl.save()
+            self.app.render(tmpl.content)
+            tmpl.data.save()
 
     @expose(hide=True)
-    def default(self):
+    def _default(self):
         self.app.log.debug("CLI arguments: %s", self.app.pargs)
         config = self.app.config.get_section_dict("tmpld")
         self.app.log.debug("Using configuration: %s", config)
@@ -118,17 +124,22 @@ class TmpldController(CementBaseController):
         self.render_templates(template_env, templates)
 
 
-class TmpldApp(CementApp):
+class TmpldApp(App):
     class Meta:
         label = "tmpld"
         description = "Renders jinja2 templates w/ Kubernetes API objects."
-        base_controller = TmpldController
-        log_handler = handlers.KubeWaitLogHandler
-        output_handler = handlers.StandardErrorHandler
+        handlers = [
+            TmpldController,
+            handlers.KubeWaitLogHandler,
+            handlers.StandardErrorHandler,
+        ]
+        # base_controller = TmpldController
+        # log_handler = handlers.KubeWaitLogHandler
+        # output_handler = handlers.StandardErrorHandler
         config_defaults = {
             "tmpld": dict(
                 environment=os.getenv("TMPLD_ENVIRONMENT", "production"),
-                exts=os.getenv("TMPLD_EXTENSIONS", "kube").split(","),
+                exts=os.getenv("TMPLD_EXTENSIONS", "").split(","),
                 namespace=os.getenv("KUBE_NAMESPACE", "default"),
                 domain=os.getenv("KUBE_DOMAIN", "cluster.local"),
                 strict=util.parse_bool(os.getenv("TMPLD_STRICT_CHECK", "false")),

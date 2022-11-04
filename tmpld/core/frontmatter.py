@@ -12,13 +12,14 @@ import yaml
 
 from . import util
 
+
 class FrontMatterFile:
     def __init__(self, file):
         self.file = file
         self._load_file(self.file)
 
     def _load_file(self, file):
-        with util.smart_open(file, 'rt') as fd:
+        with util.smart_open(file, "rt") as fd:
             self.metadata = self._parse_metadata(fd)
             self.content = fd.read().lstrip()
 
@@ -26,19 +27,19 @@ class FrontMatterFile:
     def _parse_metadata(fd):
         pointer = fd.tell()
         line = fd.readline()
-        if line != '---\n':
+        if line != "---\n":
             fd.seek(pointer)
             return {}
         lines = []
         for line in fd:
-            if line != '---\n':
+            if line != "---\n":
                 lines.append(line)
             else:
-                lines = ''.join(lines)
-                return yaml.load(lines) or {}
+                lines = "".join(lines)
+                return yaml.safe_load(lines) or {}
 
     def print(self, as_string=False):
-        contents = self.content.strip() + '\n'
+        contents = self.content.strip() + "\n"
         if as_string:
             return contents
         else:

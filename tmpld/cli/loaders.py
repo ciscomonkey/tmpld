@@ -23,7 +23,6 @@ class DataDict(argparse.Action):
         self._ensure_default(namespace)
         self._add_item(namespace, values)
 
-
     @staticmethod
     def _load_item(file):
         """Should return a tuple of key, data.
@@ -32,9 +31,9 @@ class DataDict(argparse.Action):
         is the deserialized contents of the file.
         """
         extension = util.get_file_extension(file.name)
-        if extension in ('json', 'js'):
+        if extension in ("json", "js"):
             return JsonLoader()(file)
-        elif extension in ('yaml', 'yml'):
+        elif extension in ("yaml", "yml"):
             return YamlLoader()(file)
         else:
             return TextLoader()(file)
@@ -49,8 +48,29 @@ class DataDict(argparse.Action):
 
 
 class TemplateLoader(argparse.FileType):
+    def __init__(self, file):
+        self.file = file
+        self.data = template.Template(file)
+        print(f"{self.data=}")
+
+    @property
+    def target(self):
+        return self.data.metadata["target"]
+
+    @property
+    def rendered(self):
+        return self.data.rendered
+
+    @property
+    def content(self):
+        return self.data.content
+
+    # def __repr__(self):
+    #     return template.Template(self.file)
+
     def __call__(self, file):
-        return template.Template(file)
+        # return template.Template(file)
+        return self.data
 
 
 class YamlLoader(argparse.FileType):
@@ -69,8 +89,7 @@ class YamlLoader(argparse.FileType):
 
 
 class JsonLoader(argparse.FileType):
-    def __init__(self, cls=None, object_hook=None, object_pairs_hook=None,
-                 **kwargs):
+    def __init__(self, cls=None, object_hook=None, object_pairs_hook=None, **kwargs):
         argparse.FileType.__init__(self, **kwargs)
         self.cls = cls
         self.object_hook = object_hook
@@ -81,10 +100,12 @@ class JsonLoader(argparse.FileType):
             file = argparse.FileType.__call__(self, file)
 
         slug = util.slugify_path(file.name)
-        data = json.load(file,
-                         cls=self.cls,
-                         object_hook=self.object_hook,
-                         object_pairs_hook=self.object_pairs_hook)
+        data = json.load(
+            file,
+            cls=self.cls,
+            object_hook=self.object_hook,
+            object_pairs_hook=self.object_pairs_hook,
+        )
         file.close()
         return slug, data
 
