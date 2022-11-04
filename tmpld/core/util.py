@@ -98,7 +98,7 @@ def jsonpath(string):
     return parse(string)
 
 
-@jinja2.contextfunction
+@jinja2.pass_context
 def ctx_get_file(ctx, path, *args, **kwargs):
     path = build_path(path, ctx['paths'].absdir)
     return get_file(path, **kwargs)
